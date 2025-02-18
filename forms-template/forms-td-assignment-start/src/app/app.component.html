@@ -1,0 +1,46 @@
+<!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+-->
+<div class="container">
+  <div class="inner-container">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" ngModel required email>
+    <p *ngIf="!form.controls.email.valid && form.controls.email.touched">Please enter a valid email address</p>
+
+    <br>
+
+    <label for="subscription">Subscription</label>&nbsp;&nbsp;
+    <select id="subscription" name="subscription" [ngModel]="defaultSubscription" required>
+      <option value="basic">Basic</option>
+      <option value="advanced" selected>Advanced</option>
+      <option value="pro">Pro</option>
+    </select>
+    <p *ngIf="!form.controls.subscription.valid && form.controls.subscription.touched">Please select a subscription</p>
+
+    <br>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" ngModel required>
+    <p *ngIf="!form.controls.password.valid && form.controls.password.touched">Please enter a password</p>
+
+    <br>
+
+    <button type="submit">Submit</button>
+
+    <br>
+
+    <p *ngIf="form.invalid && form.touched">Please fill out the form correctly</p>
+
+  </form>
+</div>
+</div>
